@@ -3,12 +3,12 @@ import UIKit
 class QuestionsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerStack: UIStackView!
-    var questions: [Question] = []
+    var engineer: Engineer!
 
-    static func loadController(with questions: [Question]) -> QuestionsViewController {
+    static func loadController(with engineer: Engineer) -> QuestionsViewController {
         let viewController = QuestionsViewController.init(nibName: String.init(describing: self), bundle: Bundle(for: self))
         viewController.loadViewIfNeeded()
-        viewController.setUp(with: questions)
+        viewController.setUp(with: engineer)
         return viewController
     }
 
@@ -16,7 +16,6 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "About"
-        setUpScrollView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -25,14 +24,13 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
 
-    func setUp(with questions: [Question]) {
+    func setUp(with engineer: Engineer) {
         loadViewIfNeeded()
-
-        for question in questions {
+        self.engineer = engineer
+        setUpScrollView()
+        for question in engineer.questions {
             addQuestion(with: question)
         }
-
-        self.questions = questions
     }
 
     private func addQuestion(with data: Question) {
