@@ -15,10 +15,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6jD-5a-Fds">
-                    <rect key="frame" x="15" y="94.5" width="384" height="757.5"/>
+                    <rect key="frame" x="15" y="98.5" width="384" height="753.5"/>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVy-7m-CDu">
-                    <rect key="frame" x="15" y="64" width="41.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVy-7m-CDu">
+                    <rect key="frame" x="15" y="68" width="384" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -31,6 +31,7 @@
                 <constraint firstItem="6jD-5a-Fds" firstAttribute="top" secondItem="aVy-7m-CDu" secondAttribute="bottom" constant="10" id="Ntd-k9-TvX"/>
                 <constraint firstItem="aVy-7m-CDu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Vnl-yL-HC0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6jD-5a-Fds" secondAttribute="bottom" constant="10" id="duE-z4-LSH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aVy-7m-CDu" secondAttribute="trailing" constant="15" id="mNp-eS-W19"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6jD-5a-Fds" secondAttribute="trailing" constant="15" id="qj2-eR-8ZN"/>
                 <constraint firstItem="aVy-7m-CDu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="vdb-b0-Z6C"/>
             </constraints>
@@ -39,7 +40,7 @@
                 <outlet property="optionsStackView" destination="6jD-5a-Fds" id="AQW-Iz-IFr"/>
                 <outlet property="titleLabel" destination="aVy-7m-CDu" id="ryD-Qu-Fxc"/>
             </connections>
-            <point key="canvasLocation" x="274" y="108"/>
+            <point key="canvasLocation" x="273.91304347826087" y="107.8125"/>
         </view>
     </objects>
 </document>
