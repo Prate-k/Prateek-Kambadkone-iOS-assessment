@@ -66,6 +66,7 @@ class QuestionCardView: UIView {
 
 extension QuestionCardView: SelectionViewDelegate {
     func didSelect(selectionview: SelectableAwnswerView) {
+        guard currentSelection != selectionview else { return }
         currentSelection?.deselect()
         currentSelection = selectionview
     }
