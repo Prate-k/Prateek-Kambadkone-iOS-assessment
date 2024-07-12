@@ -16,7 +16,7 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "About"
-        scrollView.delegate = self
+        setUpScrollView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,5 +41,10 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
                        options: data.answerOptions,
                        selectedIndex: data.answer?.index)
         containerStack.addArrangedSubview(cardView)
+    }
+    
+    private func setUpScrollView() {
+        scrollView.delegate = self
+        scrollView.decelerationRate = .fast
     }
 }
