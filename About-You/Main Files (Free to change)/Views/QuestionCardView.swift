@@ -4,7 +4,7 @@ class QuestionCardView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var optionsStackView: UIStackView!
     var selectedIndex: Int?
-    var currentSelection: SelectableAwnswerView?
+    var currentSelection: SelectableAnswerView?
 
     override func awakeFromNib() {
         applyStyling()
@@ -22,7 +22,7 @@ class QuestionCardView: UIView {
 
     func ensureCorrectSelectionIsSelected() {
         guard let index = selectedIndex,
-              let selectionView = optionsStackView.arrangedSubviews[index] as? SelectableAwnswerView else { return }
+              let selectionView = optionsStackView.arrangedSubviews[index] as? SelectableAnswerView else { return }
         selectionView.applySelectionStyling()
     }
 
@@ -35,7 +35,7 @@ class QuestionCardView: UIView {
     }
 
     private func addOption(with text: String, addSeperator: Bool = true, setSelected: Bool) {
-        guard let optionView = SelectableAwnswerView.loadView() else { return }
+        guard let optionView = SelectableAnswerView.loadView() else { return }
         optionView.setUp(with: text, delegate: self)
 
         optionsStackView.addArrangedSubview(optionView)
@@ -53,19 +53,10 @@ class QuestionCardView: UIView {
         let seperatorView = UIView.seperatorView(insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -10))
         optionsStackView.addArrangedSubview(seperatorView)
     }
-
-    static func loadView() -> Self? {
-        let bundle = Bundle(for: self)
-        let views = bundle.loadNibNamed(String(describing: self), owner: nil, options: nil)
-        guard let view = views?.first as? Self else {
-            return nil
-        }
-        return view
-    }
 }
 
 extension QuestionCardView: SelectionViewDelegate {
-    func didSelect(selectionview: SelectableAwnswerView) {
+    func didSelect(selectionview: SelectableAnswerView) {
         guard currentSelection != selectionview else { return }
         currentSelection?.deselect()
         currentSelection = selectionview

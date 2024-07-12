@@ -3,15 +3,9 @@ import UIKit
 struct Engineer {
     var name: String
     var role: String
-    var defualtImageName: String
+    var defaultImageName: String
     var quickStats: QuickStats
     var questions: [Question]
-}
-
-struct QuickStats {
-    var years: Int
-    var coffees: Int
-    var bugs: Int
 }
 
 extension Engineer {
@@ -19,7 +13,7 @@ extension Engineer {
         return [
             Engineer(name: "Reenen",
                      role: "Dev manager",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 6, coffees: 5400, bugs: 1800),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "6am", index: 0)),
@@ -31,7 +25,7 @@ extension Engineer {
 
             Engineer(name: "Wilmar",
                      role: "Head of Engineering",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 15, coffees: 4000, bugs: 4000),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "midnight", index: 3)),
@@ -43,7 +37,7 @@ extension Engineer {
 
             Engineer(name: "Eben",
                      role: "Head of Testing",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 14, coffees: 1000, bugs: 100),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "midnight", index: 3)),
@@ -55,7 +49,7 @@ extension Engineer {
 
             Engineer(name: "Stefan",
                      role: "Senior dev",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 7, coffees: 9000, bugs: 700),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "6am", index: 0)),
@@ -67,7 +61,7 @@ extension Engineer {
 
             Engineer(name: "Brandon",
                      role: "Senior dev",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 9, coffees: 99999, bugs: 99999),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "6am", index: 0)),
@@ -79,7 +73,7 @@ extension Engineer {
 
             Engineer(name: "Henri",
                      role: "Senior dev",
-                     defualtImageName: "",
+                     defaultImageName: "",
                      quickStats: QuickStats(years: 10, coffees: 1800, bugs: 1000),
                      questions: [
                         MainQuestions.questionOne(answer: Answer(text: "6am", index: 0)),
