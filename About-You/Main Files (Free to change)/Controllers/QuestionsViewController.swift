@@ -28,6 +28,7 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
         loadViewIfNeeded()
         self.engineer = engineer
         setUpScrollView()
+        setUpProfileView()
         for question in engineer.questions {
             addQuestion(with: question)
         }
@@ -44,5 +45,11 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
     private func setUpScrollView() {
         scrollView.delegate = self
         scrollView.decelerationRate = .fast
+    }
+    
+    private func setUpProfileView() {
+        guard let profileView = ProfileView.loadView() else { return }
+        profileView.setUp(for: engineer)
+        containerStack.addArrangedSubview(profileView)
     }
 }

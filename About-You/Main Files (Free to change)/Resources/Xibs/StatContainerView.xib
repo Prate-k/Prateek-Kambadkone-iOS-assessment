@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatContainerView" customModule="About_You" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Nwl-ya-tlb">
+                    <rect key="frame" x="15" y="63" width="384" height="784"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.89819091559999997" green="0.8976794481" blue="0.91860145329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Nwl-ya-tlb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="0R7-MV-GYq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Nwl-ya-tlb" secondAttribute="bottom" constant="15" id="AXI-4M-upq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="Nwl-ya-tlb" secondAttribute="leading" constant="-15" id="p9k-Of-MU0"/>
+                <constraint firstItem="Nwl-ya-tlb" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-15" id="vpI-GI-0gC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="statContainerStack" destination="Nwl-ya-tlb" id="Uvp-xf-YWd"/>
+            </connections>
+            <point key="canvasLocation" x="273.91304347826087" y="107.8125"/>
+        </view>
+    </objects>
+</document>
