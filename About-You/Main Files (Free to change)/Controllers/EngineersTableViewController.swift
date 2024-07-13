@@ -1,8 +1,14 @@
 import UIKit
 
+protocol EngineersListOrdering {
+    
+    var currentOrderType: EngineerOrderType? { get }
+    func orderEngineers(by order: EngineerOrderType)
+}
+
 class EngineersTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
-    var engineers: [Engineer] = Engineer.testingData()
+    private lazy var viewModel = EngineersTableViewModel(engineers: Engineer.testingData(), delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,32 +26,31 @@ class EngineersTableViewController: UITableViewController, UIPopoverPresentation
     private func setupNavigationController() {
         navigationController?.navigationBar.backgroundColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order by",
-                                                        style: .plain,
-                                                        target: self,
-                                                        action: #selector(orderByTapped))
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(orderByTapped))
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
 
     @objc func orderByTapped() {
         guard let from = navigationItem.rightBarButtonItem else { return }
         let controller = OrderByTableViewController(style: .plain)
-        let size = CGSize(width: 200,
-                          height: 150)
-
+        let size = CGSize(width: 200, height: 150)
         present(popover: controller,
-             from: from,
-             size: size,
-             arrowDirection: .up)
+                from: from,
+                size: size,
+                arrowDirection: .up)
     }
 
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-            return .none
-        }
+    func adaptivePresentationStyle(for controller: UIPresentationController, 
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
 
     private func registerCells() {
-        tableView.register(UINib(nibName: String(describing: GlucodianTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: GlucodianTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing: GlucodianTableViewCell.self), bundle: nil), 
+                           forCellReuseIdentifier: String(describing: GlucodianTableViewCell.self))
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -57,24 +62,42 @@ class EngineersTableViewController: UITableViewController, UIPopoverPresentation
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return engineers.count
+        return viewModel.numberOfEngineers
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GlucodianTableViewCell.self)) as? GlucodianTableViewCell
-        let engineer = engineers[indexPath.row]
-        cell?.setUp(with: engineer.name, role: engineer.role, image: engineer.image)
-        cell?.accessoryType = .disclosureIndicator
-        return cell ?? UITableViewCell()
+        guard let cell, let engineerInfo = viewModel.displayInfo(forEngineerAt: indexPath.row) else { return UITableViewCell() }
+        cell.setUp(with: engineerInfo)
+        cell.accessoryType = .disclosureIndicator
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = QuestionsViewController.loadController(with: engineers[indexPath.row])
+        guard let engineer = viewModel.engineer(at: indexPath.row) else { return }
+        let controller = QuestionsViewController.loadController(with: engineer)
         navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+// MARK: - EngineersTableViewModelDelegate
+
+extension EngineersTableViewController: EngineersTableViewModelDelegate {
+    
+    func updateList() {
+        tableView.reloadData()
+    }
+}
+
+// MARK: - EngineersListOrdering
+
+extension EngineersTableViewController: EngineersListOrdering {
+    
+    var currentOrderType: EngineerOrderType? { viewModel.currentOrderType }
+    
+    func orderEngineers(by order: EngineerOrderType) {
+        viewModel.orderEngineers(by: order)
     }
 }

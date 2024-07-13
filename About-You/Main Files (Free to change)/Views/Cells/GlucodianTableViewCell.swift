@@ -1,6 +1,9 @@
 import UIKit
 
 class GlucodianTableViewCell: UITableViewCell {
+    
+    typealias DisplayInfo = (name: String, role: String, image: UIImage?)
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var roleLabel: UILabel!
@@ -9,10 +12,10 @@ class GlucodianTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setUp(with name: String, role: String, image: UIImage?) {
-        nameLabel.text = name
-        roleLabel.text = role
-        if let image {
+    func setUp(with info: DisplayInfo) {
+        nameLabel.text = info.name
+        roleLabel.text = info.role
+        if let image = info.image {
             profileImage.image = image
         }
     }

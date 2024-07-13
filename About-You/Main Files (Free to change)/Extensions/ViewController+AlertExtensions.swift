@@ -8,7 +8,9 @@
 import UIKit
 
 extension UIViewController {
+    
     enum DestructiveAlertType: String {
+        
         case ok = "OK"
         case cancel = "Cancel"
         case close = "Close"
