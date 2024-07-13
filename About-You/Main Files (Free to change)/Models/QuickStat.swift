@@ -8,12 +8,12 @@
 import Foundation
 
 struct QuickStats {
-    var years: Int
-    var coffees: Int
-    var bugs: Int
+    
+    var years, coffees, bugs: Int
 }
 
 enum QuickStatType: String {
+    
     case years
     case coffees
     case bugs

@@ -1,17 +1,22 @@
 import UIKit
+import UniformTypeIdentifiers
 
 class QuestionsViewController: UIViewController, UIScrollViewDelegate {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var containerStack: UIStackView!
-    var engineer: Engineer!
-
+    
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var containerStack: UIStackView!
+    private weak var profileView: ProfileView?
+    private weak var imagePicker: UIImagePickerController?
+    
+    private var engineer: Engineer!
+    
     static func loadController(with engineer: Engineer) -> QuestionsViewController {
         let viewController = QuestionsViewController.init(nibName: String.init(describing: self), bundle: Bundle(for: self))
         viewController.loadViewIfNeeded()
         viewController.setUp(with: engineer)
         return viewController
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -49,7 +54,42 @@ class QuestionsViewController: UIViewController, UIScrollViewDelegate {
     
     private func setUpProfileView() {
         guard let profileView = ProfileView.loadView() else { return }
-        profileView.setUp(for: engineer)
+        self.profileView = profileView
+        profileView.setUp(for: engineer, delegate: self)
         containerStack.addArrangedSubview(profileView)
+    }
+}
+
+// MARK: - ProfileViewDelegate
+
+extension QuestionsViewController: ProfileViewDelegate, UINavigationControllerDelegate {
+    
+    func selectImage() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            self.showDestructiveAlert(with: "Feature Not Available", 
+                                      message: "Photo Library is not currently available",
+                                      type: .ok)
+            return
+        }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        imagePicker.mediaTypes = [UTType.image.identifier]
+        self.imagePicker = imagePicker
+        self.present(imagePicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, 
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            self.showDestructiveAlert(with: "Failed",
+                                      message: "Unable to select the image, please try again.",
+                                      type: .close)
+            imagePicker?.dismiss(animated: true) { [weak self] in self?.imagePicker = nil }
+            return
+        }
+        imagePicker?.dismiss(animated: true) { [weak self] in self?.imagePicker = nil }
+        profileView?.updateImage(with: image)
     }
 }

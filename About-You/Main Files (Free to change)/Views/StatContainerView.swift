@@ -9,7 +9,7 @@ import UIKit
 
 class StatContainerView: UIView {
     
-    @IBOutlet var statContainerStack: UIStackView!
+    @IBOutlet private weak var statContainerStack: UIStackView!
     
     override func awakeFromNib() {
         setUpView()
@@ -21,21 +21,15 @@ class StatContainerView: UIView {
     }
     
     func addStats(_ stat: QuickStats) {
-        let yearsView = StatView.loadView()
-        let coffeesView = StatView.loadView()
-        let bugsView = StatView.loadView()
-        
-        if let yearsView {
+        if let yearsView = StatView.loadView() {
             yearsView.updateStat(for: .years, with: "\(stat.years)")
             statContainerStack.addArrangedSubview(yearsView)
         }
-        
-        if let coffeesView {
+        if let coffeesView = StatView.loadView() {
             coffeesView.updateStat(for: .coffees, with: "\(stat.coffees)")
             statContainerStack.addArrangedSubview(coffeesView)
         }
-        
-        if let bugsView {
+        if let bugsView = StatView.loadView() {
             bugsView.updateStat(for: .bugs, with: "\(stat.bugs)")
             statContainerStack.addArrangedSubview(bugsView)
         }

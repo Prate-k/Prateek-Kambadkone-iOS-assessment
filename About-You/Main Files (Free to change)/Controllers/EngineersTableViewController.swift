@@ -1,6 +1,7 @@
 import UIKit
 
 class EngineersTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+    
     var engineers: [Engineer] = Engineer.testingData()
 
     override func viewDidLoad() {
@@ -13,6 +14,7 @@ class EngineersTableViewController: UITableViewController, UIPopoverPresentation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationController()
+        tableView.reloadData()
     }
 
     private func setupNavigationController() {
@@ -65,7 +67,8 @@ class EngineersTableViewController: UITableViewController, UIPopoverPresentation
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GlucodianTableViewCell.self)) as? GlucodianTableViewCell
-        cell?.setUp(with: engineers[indexPath.row].name, role: engineers[indexPath.row].role)
+        let engineer = engineers[indexPath.row]
+        cell?.setUp(with: engineer.name, role: engineer.role, image: engineer.image)
         cell?.accessoryType = .disclosureIndicator
         return cell ?? UITableViewCell()
     }

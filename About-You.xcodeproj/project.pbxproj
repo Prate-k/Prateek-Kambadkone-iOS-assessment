@@ -49,6 +49,7 @@
 		6E4A83642C41AB5C00409B8B /* StatContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A83632C41AB5C00409B8B /* StatContainerView.swift */; };
 		6E4A83682C41AF9000409B8B /* StatContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E4A83672C41AF9000409B8B /* StatContainerView.xib */; };
 		6E4A836A2C41E4F200409B8B /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E4A83692C41E4F200409B8B /* ProfileView.xib */; };
+		6E4A9D382C42B17E0055B1B1 /* ViewController+AlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A9D372C42B17E0055B1B1 /* ViewController+AlertExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		6E4A83632C41AB5C00409B8B /* StatContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatContainerView.swift; sourceTree = "<group>"; };
 		6E4A83672C41AF9000409B8B /* StatContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatContainerView.xib; sourceTree = "<group>"; };
 		6E4A83692C41E4F200409B8B /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		6E4A9D372C42B17E0055B1B1 /* ViewController+AlertExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+AlertExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				5DD01B4C27046B820032C29A /* QuestionsViewController.swift */,
 				5D93CE202705F3EA00D5059C /* EngineersTableViewController.swift */,
 				5D93CE2D2707306600D5059C /* OrderByTableViewController.swift */,
+				6E4A9D372C42B17E0055B1B1 /* ViewController+AlertExtensions.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				5DD01B5E27049AFA0032C29A /* UIView+Extension.swift in Sources */,
 				5D8DA22B26E0104C00418960 /* RootViewController.swift in Sources */,
 				6E4A83582C4168A700409B8B /* QuickStat.swift in Sources */,
+				6E4A9D382C42B17E0055B1B1 /* ViewController+AlertExtensions.swift in Sources */,
 				5D93CE2E2707306600D5059C /* OrderByTableViewController.swift in Sources */,
 				6E4A83642C41AB5C00409B8B /* StatContainerView.swift in Sources */,
 				5D90F2E426DB774400EFA4A8 /* About_You.xcdatamodeld in Sources */,
